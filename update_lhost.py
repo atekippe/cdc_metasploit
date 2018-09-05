@@ -1,14 +1,23 @@
 #!/usr/bin/python3
 import os
 
+wd = os.getcwd()
+template_directory = wd + "/template/"
+ready_to_hack_directory = wd + "/ready_to_hack/"
+
 # Get the files to a var
 files_in_dir = os.listdir()
 
+# Grab the files in the directory
+for file in files_in_dir:
+    # find the Ruby Files
+    if '.rb' in file:
 
-for i in files_in_dir:
-    if '.rb' in i:
-        print(i)
-
+        try:
+            rb_template = template_directory + file
+            print(rb_template)
+        except IOError as e:
+            print("Error - Unable to open the reverse python template:"), e
 
 '''
 # Shell to do this
