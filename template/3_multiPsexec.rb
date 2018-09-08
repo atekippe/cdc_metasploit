@@ -1,4 +1,5 @@
 set THREADS 10
+setg LHOST $LHOST$
 
 <ruby>
 port_start = 4444

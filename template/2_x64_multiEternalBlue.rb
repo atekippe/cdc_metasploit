@@ -1,5 +1,5 @@
 set THREADS 10
-setg LHOST 10.1.40.20
+setg LHOST $LHOST$
 
 <ruby>
 
