@@ -16,8 +16,15 @@ end_color = '\033[0m'
 # I'm lazy tell me the available IP Addresses
 interfaces = ni.interfaces()
 print(green + "\n ***** Addresses available for LHOST: ***** \n" + end_color)
+
 for interface in interfaces:
-    print(blue + "{0} - ".format(interface) + (ni.ifaddresses(interface)[ni.AF_INET][0]['addr']) + end_color)
+    # Catch for any interfaces without IP Addresses
+    try:
+        ip_address = ni.ifaddresses(interface)[ni.AF_INET][0]['addr']
+    except KeyError as e:
+        continue
+
+    print(blue + "{0} - {1}".format(interface, ip_address) + end_color)
 
 # Get the LHOST IP Address
 lhost = input("\n" + green + "LHOST IP ADDRESS: " + end_color)
@@ -33,11 +40,11 @@ files_in_dir = os.listdir(template_directory)
 # Grab the files in the directory
 for file in files_in_dir:
     # find the Ruby Files
-    if '.rb' in file:
+    if '.rb' or '.rc' in file:
         rb_template = template_directory + file
 
         try:
-            print(yellow + "\n ***** Updating {0} *****".format(file) + end_color)
+
             # Open the template files to read and the finished files to write
             f_template = open(template_directory + file)
             f_updated = open(ready_to_hack_directory + file, 'w+')
