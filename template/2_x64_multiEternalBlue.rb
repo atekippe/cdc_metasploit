@@ -1,5 +1,6 @@
 set THREADS 10
 setg LHOST $LHOST$
+setg AutoRunScript multi_console_command -r 2_post_exploit.rc
 
 <ruby>
 
